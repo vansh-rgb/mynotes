@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1042488663465",
+    "project_id": "mynotes-strink",
+    "storage_bucket": "mynotes-strink.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042488663465:android:c619718bf0a6d71bb738b8",
+        "android_client_info": {
+          "package_name": "com.example.my_notes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1042488663465-8ggkg38hlc6d3plm9a48mieec73di92v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXfFozNBdQKq34QHRZbeNqDqib9a4Umpw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1042488663465-8ggkg38hlc6d3plm9a48mieec73di92v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
