@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:my_notes/firebase_options.dart';
+import 'dart:developer' as devtools;
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -39,7 +38,8 @@ class _LoginViewState extends State<LoginView> {
             autocorrect: false,
             enableSuggestions: false,
             keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(hintText: 'Enter Your Email Here'),
+            decoration:
+                const InputDecoration(hintText: 'Enter Your Email Here'),
           ),
           TextField(
             controller: _password,
@@ -53,15 +53,31 @@ class _LoginViewState extends State<LoginView> {
             onPressed: () async {
               final email = _email.text;
               final password = _password.text;
+              final navigator = Navigator.of(context);
               try {
-                final userCredential = await FirebaseAuth.instance
-                    .signInWithEmailAndPassword(email: email, password: password);
-                print(userCredential);
+                await FirebaseAuth.instance.signInWithEmailAndPassword(
+                  email: email,
+                  password: password,
+                );
+                final user = FirebaseAuth.instance.currentUser;
+                if (user != null) {
+                  if (user.emailVerified) {
+                    navigator.pushNamedAndRemoveUntil(
+                      '/notes/',
+                      (route) => false,
+                    );
+                  } else {
+                    navigator.pushNamedAndRemoveUntil(
+                      '/verifymail/',
+                      (route) => false,
+                    );
+                  }
+                }
               } on FirebaseAuthException catch (e) {
                 if (e.code == 'user-not-found') {
-                  print('User Not Found');
+                  devtools.log('User Not Found');
                 } else if (e.code == 'wrong-password') {
-                  print('Wrong Password');
+                  devtools.log('Wrong Password');
                 }
               }
             },
