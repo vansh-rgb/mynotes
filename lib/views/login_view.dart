@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as devtools;
 
+import 'package:my_notes/constants/routes.dart';
+
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
@@ -63,12 +65,12 @@ class _LoginViewState extends State<LoginView> {
                 if (user != null) {
                   if (user.emailVerified) {
                     navigator.pushNamedAndRemoveUntil(
-                      '/notes/',
+                      notesRoute,
                       (route) => false,
                     );
                   } else {
                     navigator.pushNamedAndRemoveUntil(
-                      '/verifymail/',
+                      verifymailRoute,
                       (route) => false,
                     );
                   }
@@ -86,7 +88,7 @@ class _LoginViewState extends State<LoginView> {
           TextButton(
             onPressed: () {
               Navigator.of(context).pushNamedAndRemoveUntil(
-                '/register/',
+                registerRoute,
                 (route) => false,
               );
             },
